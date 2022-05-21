@@ -1,6 +1,16 @@
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import React, { FC } from "react";
 import Header from "../components/Header";
+import Tasks from "../components/Tasks";
+
+const mockTask = [
+  {
+    id: "1",
+    title: "AGN-1111",
+    description: "Upgrade the free plan to premium model.",
+    status: "todo",
+  },
+];
 
 const Home: FC = () => {
   return (
@@ -26,7 +36,7 @@ const Home: FC = () => {
             placeholder="Description"
             fullWidth
             multiline
-            rows={10}
+            rows={5}
           />
         </FormControl>
         <FormControl>
@@ -35,6 +45,7 @@ const Home: FC = () => {
           </Button>
         </FormControl>
       </Box>
+      <Tasks tasks={mockTask} />
     </Box>
   );
 };
