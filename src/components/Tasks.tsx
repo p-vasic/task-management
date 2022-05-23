@@ -3,13 +3,6 @@ import { Box, Typography } from "@mui/material";
 import { useTask } from "../context/TaskContext";
 import TaskItem from "./TaskItem";
 
-export type Task = {
-  id: string;
-  title: string;
-  description: string;
-  status: string;
-};
-
 const Tasks: FC = () => {
   const { tasks } = useTask();
 
@@ -19,7 +12,7 @@ const Tasks: FC = () => {
         Tasks
       </Typography>
 
-      <Box mt={3} bgcolor="#75a7d9" height="100vh" borderRadius={5} p={3}>
+      <Box mt={3} bgcolor="#75a7d9" height="90vh" borderRadius={5} p={3}>
         {tasks.length === 0 ? (
           <Typography variant="subtitle1">
             You have nothing to do. Go get some sleep.
