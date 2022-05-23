@@ -7,7 +7,7 @@ import Tasks from "../components/Tasks";
 const Home: FC = () => {
   return (
     <Box>
-      <Header />
+      <Header title="Home" />
       <AddTaskForm />
       <Tasks />
     </Box>
