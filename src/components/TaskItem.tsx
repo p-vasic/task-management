@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   Box,
   Button,
@@ -7,8 +8,8 @@ import {
   CardHeader,
   Typography,
 } from "@mui/material";
-import React, { FC } from "react";
-import { Task } from "./Tasks";
+import { STATUS, Task } from "../model";
+import editButton from "../edit-button.svg";
 
 interface ITaskItem {
   task: Task;
@@ -17,15 +18,25 @@ interface ITaskItem {
 const TaskItem: FC<ITaskItem> = ({ task }) => {
   return (
     <Box maxWidth={300}>
-      <Card>
-        <CardHeader title="Task title goes here" />
-        <CardContent>
-          Task description goes here. If thext size is more than 3 paragraphs it
-          is trimmed.
-        </CardContent>
-        <CardActions>
-          <Typography>Todo</Typography>
-          <Button>Edit icon</Button>
+      <Card sx={{ textAlign: "left" }}>
+        <CardHeader title={task.title} />
+        <CardContent>{task.description}</CardContent>
+        <CardActions disableSpacing>
+          <Box display="flex" justifyContent="space-between" width="100%">
+            <Typography
+              sx={{
+                background: "#1976d2",
+                color: "white",
+                padding: "6px 10px",
+                borderRadius: "4px",
+              }}
+            >
+              {STATUS[task.status]}
+            </Typography>
+            <Button>
+              <img src={editButton} width="24" height="24" />
+            </Button>
+          </Box>
         </CardActions>
       </Card>
     </Box>
