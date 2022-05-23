@@ -1,5 +1,6 @@
+import { FC } from "react";
 import { Box, Typography } from "@mui/material";
-import React, { FC } from "react";
+import { useTask } from "../context/TaskContext";
 import TaskItem from "./TaskItem";
 
 export type Task = {
@@ -9,11 +10,9 @@ export type Task = {
   status: string;
 };
 
-interface ITasks {
-  tasks: Array<Task>;
-}
+const Tasks: FC = () => {
+  const { tasks } = useTask();
 
-const Tasks: FC<ITasks> = ({ tasks }) => {
   return (
     <Box pt={3} bgcolor="#1976d2" borderRadius={5}>
       <Typography variant="h6" color="white" textAlign="left" marginLeft={3}>
