@@ -1,10 +1,10 @@
 import { createContext, FC, useCallback, useContext, useState } from "react";
-import { Task } from "../components/Tasks";
+import { Status, Task } from "../model";
 
 interface TaskContextProps {
   tasks: Array<Task>;
   addTask: (task: Task) => void;
-  changeTaskStatus: (id: string, status: string) => void;
+  changeTaskStatus: (id: string, status: Status) => void;
   children?: React.ReactNode;
 }
 
@@ -17,7 +17,7 @@ export const useTaskOption = () => {
     setTasks((tasks) => [...tasks, task]);
   }, []);
 
-  const changeTaskStatus = useCallback((id: string, status: string) => {
+  const changeTaskStatus = useCallback((id: string, status: Status) => {
     setTasks((tasks) => {
       const item = tasks.find((t) => t.id === id);
       item!.status = status;
