@@ -4,12 +4,22 @@ import {
   Button,
   FormControl,
   Grid,
+  MenuItem,
   TextField,
   Typography,
 } from "@mui/material";
 import { useTask } from "../context/TaskContext";
 import { useNavigate, useParams } from "react-router-dom";
-import { Task } from "../model";
+import { Status, STATUS, Task } from "../model";
+
+const possibleStatus = {
+  todo: ["todo", "progress"],
+  progress: ["progress", "block", "qa"],
+  block: ["todo", "block"],
+  qa: ["todo", "done", "qa"],
+  done: ["deployed", "done"],
+  deployed: ["deployed"],
+};
 
 const EditTaskForm: FC = () => {
   const params = useParams();
@@ -76,7 +86,18 @@ const EditTaskForm: FC = () => {
         />
       </FormControl>
       <FormControl margin="normal">
-        <TextField select fullWidth />
+        <TextField
+          select
+          fullWidth
+          value={task.status}
+          onChange={handleChange("status")}
+        >
+          {possibleStatus[task.status].map((status, index) => (
+            <MenuItem key={index} value={status}>
+              {STATUS[status as Status]}
+            </MenuItem>
+          ))}
+        </TextField>
       </FormControl>
       <FormControl margin="normal">
         <Grid container spacing={1}>
