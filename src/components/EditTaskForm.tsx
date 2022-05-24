@@ -61,6 +61,7 @@ const EditTaskForm: FC = () => {
       justifyContent="center"
       flexDirection="column"
       maxWidth={500}
+      data-testid="edit-task-form"
     >
       <Typography variant="h6" textAlign="left">
         Edit Task
@@ -107,6 +108,7 @@ const EditTaskForm: FC = () => {
               color="primary"
               onClick={handleEdit}
               fullWidth
+              data-testid="edit-button"
             >
               Edit
             </Button>
