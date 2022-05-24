@@ -39,6 +39,7 @@ const AddTaskForm: FC = () => {
       justifyContent="center"
       flexDirection="column"
       maxWidth={500}
+      data-testid="add-task-form"
     >
       <Typography variant="h6" textAlign="left">
         Add a new Task

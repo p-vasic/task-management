@@ -24,7 +24,7 @@ const TaskItem: FC<ITaskItem> = ({ task }) => {
   };
 
   return (
-    <Card sx={{ textAlign: "left" }}>
+    <Card sx={{ textAlign: "left" }} data-testid="task-item">
       <CardHeader title={task.title} />
       <CardContent sx={{ minHeight: 80 }}>
         <Typography
