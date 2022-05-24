@@ -10,12 +10,19 @@ import {
 } from "@mui/material";
 import { STATUS, Task } from "../model";
 import editButton from "../edit-button.svg";
+import { useNavigate } from "react-router-dom";
 
 interface ITaskItem {
   task: Task;
 }
 
 const TaskItem: FC<ITaskItem> = ({ task }) => {
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(task.id);
+  };
+
   return (
     <Box maxWidth={300}>
       <Card sx={{ textAlign: "left" }}>
@@ -33,7 +40,7 @@ const TaskItem: FC<ITaskItem> = ({ task }) => {
             >
               {STATUS[task.status]}
             </Typography>
-            <Button>
+            <Button onClick={handleEdit}>
               <img src={editButton} width="24" height="24" />
             </Button>
           </Box>
