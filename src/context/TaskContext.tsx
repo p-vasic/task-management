@@ -4,7 +4,8 @@ import { Status, Task } from "../model";
 interface TaskContextProps {
   tasks: Array<Task>;
   addTask: (task: Task) => void;
-  changeTaskStatus: (id: string, status: Status) => void;
+  updateTask: (id: string, updated: Task) => void;
+  getTask: (id: string) => Task | undefined;
   children?: React.ReactNode;
 }
 
@@ -17,19 +18,23 @@ export const useTaskOption = () => {
     setTasks((tasks) => [...tasks, task]);
   }, []);
 
-  const changeTaskStatus = useCallback((id: string, status: Status) => {
+  const updateTask = useCallback((id: string, updated: Task) => {
     setTasks((tasks) => {
-      const item = tasks.find((t) => t.id === id);
-      item!.status = status;
+      let item = tasks.find((t) => t.id === id);
 
-      return [...tasks];
+      return [...tasks.filter((t) => t.id !== id), { ...item, ...updated }];
     });
   }, []);
+
+  const getTask = (id: string) => {
+    return tasks.find((task) => task.id === id);
+  };
 
   return {
     tasks,
     addTask,
-    changeTaskStatus,
+    updateTask,
+    getTask,
   };
 };
 
